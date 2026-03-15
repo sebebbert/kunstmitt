@@ -1,0 +1,27 @@
+---
+const { artwork } = Astro.props;
+
+const images = import.meta.glob(
+  "../assets/artworks/*.{webp,jpg,png}",
+  { eager: true }
+);
+
+const image = images[`../assets/artworks/${artwork.data.image}`].default;
+---
+
+<div class="space-y-2">
+  <img
+    src={image.src}
+    width={image.width}
+    height={image.height}
+    alt={artwork.data.title}
+    class="w-full object-cover"
+  />
+
+  <div>
+    <h3 class="text-lg font-semibold">{artwork.data.title}</h3>
+    <p class="text-sm text-gray-500">
+      {artwork.data.year} · {artwork.data.medium}
+    </p>
+  </div>
+</div>

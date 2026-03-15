@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const artworks = await getCollection("artworks");
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {artworks.map((art) => (
+    <a href={`/kunstmitt/${art.slug}`} class="group">
+      <img
+        src={art.data.image}
+        alt={art.data.title}
+        class="w-full aspect-square object-cover transition-transform group-hover:scale-105"
+      />
+    </a>
+  ))}
+</div>
