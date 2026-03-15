@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const artworks = await getCollection("artworks");
+
+const images = import.meta.glob<{ default: string }>(
+  "../../public/artworks/*-preview.webp",
+  {
+    eager: true,
+  }
+);
+
+function resolveArtworkImage(imageName: string) {
+  if (!imageName) return null;
+
+  // Content frontmatter may reference the file via an absolute path (e.g. /artworks/kranich.webp)
+  // but the Vite glob keys are relative to this component file.
+  const filename = imageName.replace(/^\/?artworks\//, "");
+  const key = `../../public/artworks/${filename}`;
+
+  const match = images[key];
+  if (!match) return null;
+
+  return match.default;
+}
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+  {artworks.map((art, index) => {
+    const image = resolveArtworkImage(art.data.preview) ?? "";
+
+    return (
+      <a
+        href={`/kunstmitt/${art.data.slug}`}
+        class="group block card-hover glass-effect rounded-xl overflow-hidden"
+        style={`animation-delay: ${index * 100}ms`}
+      >
+        <div class="relative aspect-square overflow-hidden">
+          <Image
+            src={image}
+            alt={art.data.title}
+            class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
+            width={500}
+            height={500}
+          />
+
+          <!-- Overlay with artwork info -->
+          <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <h3 class="text-amber-50 text-lg font-medium mb-1">{art.data.title}</h3>
+              <p class="text-amber-200 text-sm">
+                {art.data.year} · {art.data.medium}
+              </p>
+            </div>
+          </div>
+
+          <!-- Subtle border effect -->
+          <div class="absolute inset-0 border border-amber-200/20 rounded-xl group-hover:border-amber-300/30 transition-colors duration-300"></div>
+        </div>
+      </a>
+    );
+  })}
+</div>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GalleryGrid from "../components/GalleryGrid.astro";
+---
+
+<BaseLayout title="kunstmitt">
+  <div class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative py-20 lg:py-32">
+      <div class="container-fluid mx-auto">
+        <div class="text-center space-y-2">
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-gradient">
+            <img src="/kunstmitt/src/assets/kunstmitt.svg" alt="kunstmitt logo" class="inline w-20 h-20 mb-2 filter-amber" />
+          </h1>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-standard text-amber-700">
+            kunstmitt
+          </h2>
+          <p class="text-lg sm:text-xl text-amber-700 max-w-2xl mx-auto leading-relaxed">
+            Zeitgenössische Kunst, inspiriert von der Tierwelt. Entdecke einzigartige Werke, die die Schönheit und Vielfalt der Natur feiern.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="pb-20 lg:pb-32">
+      <div class="container-fluid mx-auto">
+        <GalleryGrid />
+      </div>
+    </section>
+  </div>
+</BaseLayout>
