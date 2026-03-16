@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://sebebbert.github.io',
   base: '/kunstmitt',
+  server: {
+    host: true
+  },
   vite: {
     plugins: [tailwindcss()]
   }
