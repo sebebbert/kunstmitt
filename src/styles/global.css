@@ -37,4 +37,8 @@
   .glass-effect {
     @apply backdrop-blur-sm bg-amber-50/30 border border-amber-200/20;
   }
+
+  .filter-amber {
+    filter: invert(31%) sepia(37%) saturate(3607%) hue-rotate(14deg) brightness(93%) contrast(102%) drop-shadow(-0.2px -0.1px 0.5px rgb(0, 0, 0));
+  }
 }
