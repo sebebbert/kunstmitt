@@ -4,11 +4,26 @@ import GalleryGrid from "../components/GalleryGrid.astro";
 ---
 
 <BaseLayout title="kunstmitt">
+  <div class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative py-20 lg:py-32">
+      <div class="container-fluid mx-auto">
+        <div class="text-center space-y-6">
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-gradient">
+            kunstmitt
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Contemporary art collection exploring texture, form, and expression through various mediums.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<section class="max-w-7xl mx-auto py-16">
-
-  <GalleryGrid />
-
-</section>
-
+    <!-- Gallery Section -->
+    <section class="pb-20 lg:pb-32">
+      <div class="container-fluid mx-auto">
+        <GalleryGrid />
+      </div>
+    </section>
+  </div>
 </BaseLayout>

@@ -24,18 +24,60 @@ function resolveArtworkImage(imagePath: string) {
 const image = resolveArtworkImage(artwork.data.image);
 ---
 
-<div class="space-y-2">
-  <Image
-    src={image}
-    widths={[600, 1200, 1800]}
-    alt={artwork.data.title}
-    class="w-full object-cover"
-  />
+<div class="min-h-screen py-12 lg:py-20">
+  <div class="container-fluid mx-auto">
+    <div class="max-w-4xl mx-auto">
+      <!-- Back button -->
+      <a
+        href="/kunstmitt"
+        class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200 mb-8 group"
+      >
+        <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back to Gallery
+      </a>
 
-  <div>
-    <h3 class="text-lg font-semibold">{artwork.data.title}</h3>
-    <p class="text-sm text-gray-500">
-      {artwork.data.year} · {artwork.data.medium}
-    </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Image Section -->
+        <div class="space-y-6">
+          <div class="glass-effect rounded-2xl overflow-hidden card-hover">
+            <Image
+              src={image}
+              widths={[600, 1200, 1800]}
+              alt={artwork.data.title}
+              class="w-full object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light text-gradient leading-tight">
+              {artwork.data.title}
+            </h1>
+
+            <div class="flex flex-wrap gap-4 text-sm text-gray-400">
+              <span class="glass-effect px-3 py-1 rounded-full">
+                {artwork.data.year}
+              </span>
+              <span class="glass-effect px-3 py-1 rounded-full">
+                {artwork.data.medium}
+              </span>
+            </div>
+          </div>
+
+          <div class="prose prose-invert max-w-none">
+            <p class="text-gray-300 text-lg leading-relaxed">
+              {artwork.body}
+            </p>
+          </div>
+
+          <!-- Decorative element -->
+          <div class="w-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

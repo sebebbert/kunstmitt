@@ -7,13 +7,20 @@ const { title } = Astro.props;
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title}</title>
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white min-h-screen">
+  <div class="relative min-h-screen">
+    <!-- Subtle background pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:20px_20px]"></div>
+    </div>
 
-<slot />
-
+    <main class="relative z-10">
+      <slot />
+    </main>
+  </div>
 </body>
 </html>
