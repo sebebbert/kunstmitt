@@ -8,7 +8,7 @@
   body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #faf7f2 0%, #f5f1ea 100%);
     min-height: 100vh;
   }
 }
@@ -19,14 +19,14 @@
   }
 
   .card-hover {
-    @apply transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1;
+    @apply transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-amber-900/10 hover:-translate-y-1;
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-amber-900 via-amber-800 to-amber-900 bg-clip-text text-transparent;
   }
 
   .glass-effect {
-    @apply backdrop-blur-sm bg-white/5 border border-white/10;
+    @apply backdrop-blur-sm bg-amber-50/30 border border-amber-200/20;
   }
 }

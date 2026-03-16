@@ -30,7 +30,7 @@ const image = resolveArtworkImage(artwork.data.image);
       <!-- Back button -->
       <a
         href="/kunstmitt"
-        class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200 mb-8 group"
+        class="inline-flex items-center gap-2 text-amber-700 hover:text-amber-900 transition-colors duration-200 mb-8 group"
       >
         <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -58,7 +58,7 @@ const image = resolveArtworkImage(artwork.data.image);
               {artwork.data.title}
             </h1>
 
-            <div class="flex flex-wrap gap-4 text-sm text-gray-400">
+            <div class="flex flex-wrap gap-4 text-sm text-amber-700">
               <span class="glass-effect px-3 py-1 rounded-full">
                 {artwork.data.year}
               </span>
@@ -68,14 +68,14 @@ const image = resolveArtworkImage(artwork.data.image);
             </div>
           </div>
 
-          <div class="prose prose-invert max-w-none">
-            <p class="text-gray-300 text-lg leading-relaxed">
+          <div class="prose prose-amber max-w-none">
+            <p class="text-amber-800 text-lg leading-relaxed">
               {artwork.body}
             </p>
           </div>
 
           <!-- Decorative element -->
-          <div class="w-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+          <div class="w-16 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
         </div>
       </div>
     </div>
