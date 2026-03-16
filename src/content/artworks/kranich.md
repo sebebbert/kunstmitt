@@ -2,7 +2,8 @@
 title: "Kranich"
 year: 2024
 medium: "Oil on Canvas"
-image: "/src/assets/artworks/kranich.webp"
+image: "kranich.webp"
+slug: "kranich"
 featured: true
 ---
 

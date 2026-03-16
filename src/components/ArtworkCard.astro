@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 const { artwork } = Astro.props;
 
 const images = import.meta.glob(
@@ -6,14 +7,27 @@ const images = import.meta.glob(
   { eager: true }
 );
 
-const image = images[`../assets/artworks/${artwork.data.image}`].default;
+function resolveArtworkImage(imagePath: string) {
+  if (!imagePath) return null;
+
+  // Content frontmatter may reference the file via an absolute path (e.g. /src/assets/artworks/kranich.webp)
+  // but the Vite glob keys are relative to this component file.
+  const filename = imagePath.replace(/^\/?src\/assets\/artworks\//, "");
+  const key = `../assets/artworks/${filename}`;
+
+  const match = images[key];
+  if (!match) return null;
+
+  return match.default;
+}
+
+const image = resolveArtworkImage(artwork.data.image);
 ---
 
 <div class="space-y-2">
-  <img
-    src={image.src}
-    width={image.width}
-    height={image.height}
+  <Image
+    src={image}
+    widths={[600, 1200, 1800]}
     alt={artwork.data.title}
     class="w-full object-cover"
   />

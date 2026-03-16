@@ -3,16 +3,40 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const artworks = await getCollection("artworks");
+
+const images = import.meta.glob("../assets/artworks/*.{webp,jpg,png}", {
+  eager: true,
+});
+
+function resolveArtworkImage(imageName: string) {
+  if (!imageName) return null;
+
+  // Content frontmatter may reference the file via an absolute path (e.g. /src/assets/artworks/kranich.webp)
+  // but the Vite glob keys are relative to this component file.
+  const filename = imageName.replace(/^\/?src\/assets\/artworks\//, "");
+  const key = `../assets/artworks/${filename}`;
+
+  const match = images[key];
+  if (!match) return null;
+
+  return match.default;
+}
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {artworks.map((art) => (
-    <a href={`/kunstmitt/${art.slug}`} class="group">
-      <img
-        src={art.data.image}
-        alt={art.data.title}
-        class="w-full aspect-square object-cover transition-transform group-hover:scale-105"
-      />
-    </a>
-  ))}
+  {artworks.map((art) => {
+    const image = resolveArtworkImage(art.data.image);
+
+    return (
+      <a href={`/kunstmitt/${art.data.slug}`} class="group">
+        <Image
+          src={image?.src ?? art.data.image}
+          width={image?.width}
+          height={image?.height}
+          alt={art.data.title}
+          class="w-full aspect-square object-cover transition-transform group-hover:scale-105"
+        />
+      </a>
+    );
+  })}
 </div>

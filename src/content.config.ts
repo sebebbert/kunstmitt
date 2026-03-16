@@ -11,6 +11,7 @@ const artworks = defineCollection({
     year: z.number(),
     medium: z.string(),
     image: z.string(),
+    slug: z.string(),
     featured: z.boolean().optional(),
   }),
 });
